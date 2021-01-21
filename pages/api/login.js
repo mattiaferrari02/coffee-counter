@@ -5,9 +5,22 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 const bcrypt = require('bcryptjs');
 
-const cors = Cors({
+function initMiddleware(middleware) {
+    return (req, res) =>
+        new Promise((resolve, reject) => {
+            middleware(req, res, (result) => {
+                if (result instanceof Error) {
+                    return reject(result)
+                }
+                return resolve(result)
+            })
+        })
+}
+
+
+const cors = initMiddleware(Cors({
     methods: ['POST'],
-})
+}))
 
 
 
