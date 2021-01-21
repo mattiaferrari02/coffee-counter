@@ -1,8 +1,14 @@
 const { PrismaClient } = require('@prisma/client')
 const jwt = require("jsonwebtoken");
 const prisma = new PrismaClient();
+import NextCors from 'nextjs-cors';
 
 export default async (req, res) => {
+        await NextCors(req, res, {
+            // Options
+            methods: ['GET'],
+            optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+        });
         const {token} = req.query;
         try {
             jwt.verify(token, process.env.JWT_SECRET);

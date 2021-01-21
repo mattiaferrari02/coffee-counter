@@ -52,9 +52,8 @@ export default async (req, res) => {
                 const token = jwt.sign({
                     id, email, name, surname
                 }, process.env.JWT_SECRET )
-                res.statusCode = 200
-                res.setHeader('Content-Type', 'application/json')
-                res.end(JSON.stringify({ token: token }))
+                console.log("sending data", token);
+                res.json({ token: token });
 
             }else throw "sdfasfg";
         } catch (error) {

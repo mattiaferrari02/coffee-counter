@@ -1,11 +1,13 @@
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useRouter } from 'next/router'
 
 export default function App() {
     const { register, handleSubmit, errors } = useForm(); // initialize the hook
+    const router = useRouter()
     const onSubmit = async (data) => {
-        axios.post('https://coffee-counter.vercel.app/api/login', data ).then(
-            r=> {localStorage.setItem("token", r.token)}
+        axios.post('http://localhost:3000/api/login', data ).then(
+            r => { localStorage.setItem("token", r.data.token); console.log(r); router.push("/")}
         ).catch(e =>{console.log(e);})
     };
 
