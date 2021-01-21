@@ -4,6 +4,8 @@ require("dotenv").config()
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 const bcrypt = require('bcryptjs');
+import NextCors from 'nextjs-cors';
+
 import headers from "./next.config"
 
 function initMiddleware(middleware) {
@@ -26,6 +28,14 @@ const cors = initMiddleware(Cors({
 
 
 export default async (req, res) => {
+
+    await NextCors(req, res, {
+        // Options
+        methods: ['POST'],
+        optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+    });
+
+
     if (req.method === 'POST') {
         const {username, password} = req.body;
         console.log(req.body);
