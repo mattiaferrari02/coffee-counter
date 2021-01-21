@@ -32,6 +32,10 @@ a {
   text-decoration: none;
 }
 
+.error{
+  color: red;
+}
+
 * {
   box-sizing: border-box;
   user-select: none;

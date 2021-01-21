@@ -8,8 +8,12 @@ export default function Home({counter}) {
   const [counterUI, setCounter] = useState(counter);
   const [error, setError] = useState("");
   const handleClick = async()=>{
-    await axios.get(`https://coffee-counter.vercel.app/api/add?token=${localStorage.getItem("token")}`).then(res=> {console.log(res); setCounter(counterUI+1) }).catch(e=>{
-      setError(<div className="item text" >Tu non sei Mattia</div>);
+    await axios.get(`https://coffee-counter.vercel.app/api/add?token=${localStorage.getItem("token")}`).then(res=> {
+      console.log(res); 
+      if(res.data.msg!="Not today") setCounter(counterUI+1) 
+      else setError(<div className="item text error" >Non penso che tu sia Mattia</div>);
+    }).catch(e=>{
+      setError(<div className="item text error" >Non penso che tu sia Mattia</div>);
     })
   }
 
