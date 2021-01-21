@@ -43,21 +43,21 @@ export default async (req, res) => {
                     id, email, name, surname
                 }, process.env.JWT_SECRET )
                 res.statusCode = 200
-                res.setHeader(headers())
+                res.setHeader('Content-Type', 'application/json')
                 res.end(JSON.stringify({ token: token }))
 
             }else throw "sdfasfg";
         } catch (error) {
             console.log("pipo");
             res.statusCode = 200
-            res.setHeader(headers())
+            res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify({ msg: error }))
         }
 
         
     } else {
         res.statusCode = 200
-        res.setHeader(headers())
+        res.setHeader('Content-Type', 'application/json')
         res.end(JSON.stringify({ msg: "This isn't what you are looking for" }))
     }
 };
