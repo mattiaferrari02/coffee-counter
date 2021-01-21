@@ -5,8 +5,8 @@ export default function App() {
     const { register, handleSubmit, errors } = useForm(); // initialize the hook
     const onSubmit = async (data) => {
         axios.post('https://coffee-counter.vercel.app/api/login', data ).then(
-            r=> {console.log(r.data);}
-        )
+            r=> {localStorage.setItem("token", r.token)}
+        ).catch(e =>{console.log(e);})
     };
 
     return (
