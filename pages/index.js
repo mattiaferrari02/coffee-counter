@@ -1,8 +1,31 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import {getData} from './api'
 
-export default function Home() {
+
+
+export default function Home({counter}) {
+  
   return (
-    <div>Pipo furente maximo</div>
+    <main className="container">
+      <div>
+        
+        <div className="item text" >Mattia si è bevuto</div>
+        <div className="item counter" >{counter}☕</div>
+        <div className="item text" >Caffè dal primo gennaio 2021</div>
+        
+      </div>
+    </main>
+    
   )
 }
+
+
+export async function getServerSideProps(){
+  const counter = await getData();
+  console.log(counter);
+  return {
+    props: {
+      counter
+    }
+  };
+};

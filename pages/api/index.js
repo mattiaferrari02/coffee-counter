@@ -8,3 +8,7 @@ export default async (req, res) => {
     res.statusCode = 200
     res.json({ data: data })
 }
+
+export const getData = async () =>{
+    return await prisma.coffee.count()
+}
