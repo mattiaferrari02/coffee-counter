@@ -18,17 +18,27 @@ export default function Home({counter}) {
   }
 
   return (
-    <main className="container">
-      <div>
-        
-        <div className="item text" >Mattia si è bevuto</div>
-        <div className="item counter" >{counterUI}☕</div>
-        <div className="item text" >Caffè dal primo gennaio 2021</div>
-        {error}
-        <div className="btn" onClick={handleClick} >+</div>
-      </div>
-    </main>
-    
+    <>
+      <Head>
+        <title>Coffees {counterUI}☕</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="Description" content="This site display how many coffees i drank from 1/01/2021, I made it using nextjs, prisma and mysql"></meta>
+        <meta name="author" content="Mattia Ferrari"></meta>
+        <meta name="keywords" content="Mattia, Ferrari, coffee, coffeees, counter, nextjs, prisma, project"></meta>
+        <meta name="robots" content="index"></meta>
+        <meta name="dc.language" content="ita" scheme="RFC1766"></meta>
+        </Head>
+      <main className="container">
+        <div>
+          
+          <div className="item text" >Mattia si è bevuto</div>
+          <div className="item counter" >{counterUI}☕</div>
+          <div className="item text" >Caffè dal primo gennaio 2021</div>
+          {error}
+          <div className="btn" onClick={handleClick} >+</div>
+        </div>
+      </main>
+    </>
   )
 }
 
