@@ -24,7 +24,7 @@ export default function Home({counter}) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="Description" content="This site display how many coffees i drank from 1/01/2021, I made it using nextjs, prisma and mysql"></meta>
         <meta name="author" content="Mattia Ferrari"></meta>
-        <meta name="keywords" content="Mattia, Ferrari, coffee, coffeees, counter, nextjs, prisma, project"></meta>
+        <meta name="keywords" content="mattia ferrari,caffè, coffee, coffeees, counter, nextjs, prisma, project"></meta>
         <meta name="robots" content="index"></meta>
         <meta name="dc.language" content="ita" scheme="RFC1766"></meta>
         </Head>
