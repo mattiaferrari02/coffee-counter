@@ -22,7 +22,7 @@ export default function Home({counter}) {
       <Head>
         <title>Coffees {counterUI}☕</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="Description" content="This site display how many coffees i drank from 1/01/2021, I made it using nextjs, prisma and mysql"></meta>
+        <meta name="Description" content="Sono Mattia Ferrari, questo è un piccolo progetto basato sulla dipendenza da caffè, per farlo ho utilizzato nextjs e prisma"></meta>
         <meta name="author" content="Mattia Ferrari"></meta>
         <meta name="keywords" content="mattia ferrari,caffè, coffee, coffeees, counter, nextjs, prisma, project"></meta>
         <meta name="robots" content="index"></meta>
