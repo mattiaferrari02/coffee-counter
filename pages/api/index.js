@@ -2,16 +2,15 @@ import NextCors from 'nextjs-cors';
 import { getCoffees } from '../../lib/redis';
 
 export default async (req, res) => {
-    let data = "N/A";
     await NextCors(req, res, {
         // Options
         methods: ['GET'],
         optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
     });
-    data = await getCoffees()
+    const { coffees } = await getCoffees()
     
     res.statusCode = 200
-    res.send(data)
+    res.send(`Hai bevuto ${coffees}`)
 }
 
 export const getData = async () =>{
