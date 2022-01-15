@@ -1,10 +1,9 @@
 const jwt = require('jsonwebtoken');
 import Cors from 'cors';
 require("dotenv").config()
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient();
 const bcrypt = require('bcryptjs');
 import NextCors from 'nextjs-cors';
+import { validateAuth } from '../../lib/redis';
 
 import headers from "./next.config"
 
@@ -37,35 +36,20 @@ export default async (req, res) => {
 
 
     if (req.method === 'POST') {
-        const {username, password} = req.body;
-        console.log(req.body);
-
-        const user = await prisma.user.findUnique({
-            where: {
-                email: username
-            }
-        })
-        console.log(user);
-        try {
-            if (await bcrypt.compare(password, user.password)){
-                const {id, email, name, surname} = user;
-                const token = jwt.sign({
-                    id, email, name, surname
-                }, process.env.JWT_SECRET )
-                console.log("sending data", token);
-                res.json({ token: token });
-
-            }else throw "sdfasfg";
-        } catch (error) {
-            console.log("pipo");
-            res.statusCode = 200
+        const { password } = req.body;
+        if (await validateAuth(password)) {
+            const token = jwt.sign({
+                
+            }, process.env.JWT_SECRET )
+            res.json({ token: token });
+        } else {
+            res.statusCode = 404
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify({ msg: error }))
         }
-
         
     } else {
-        res.statusCode = 200
+        res.statusCode = 404
         res.setHeader('Content-Type', 'application/json')
         res.end(JSON.stringify({ msg: "This isn't what you are looking for" }))
     }

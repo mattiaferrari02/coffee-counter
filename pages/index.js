@@ -8,7 +8,7 @@ export default function Home({counter}) {
   const [counterUI, setCounter] = useState(counter);
   const [error, setError] = useState("");
   const handleClick = async()=>{
-    await axios.get(`https://coffee-counter.vercel.app/api/add?token=${localStorage.getItem("token")}`).then(res=> {
+    await axios.get(`/api/add?token=${localStorage.getItem("token")}`).then(res=> {
       console.log(res); 
       if(res.data.msg!="Not today") setCounter(counterUI+1) 
       else setError(<div className="item text error" >Non penso che tu sia Mattia</div>);
@@ -33,7 +33,7 @@ export default function Home({counter}) {
           
           <div className="item text" >Mattia si è bevuto</div>
           <div className="item counter" >{counterUI}☕</div>
-          <div className="item text" >Caffè dal primo gennaio 2021</div>
+          <div className="item text" >Caffè dal primo gennaio 2022</div>
           {error}
           <div className="btn" onClick={handleClick} >+</div>
         </div>
@@ -44,11 +44,11 @@ export default function Home({counter}) {
 
 
 export async function getServerSideProps(){
-  const counter = await getData();
-  console.log(counter);
+  const { coffees } = await getData();
+  console.log(coffees);
   return {
     props: {
-      counter
+      counter: parseInt(coffees)
     }
   };
 };

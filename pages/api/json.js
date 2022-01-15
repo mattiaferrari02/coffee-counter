@@ -1,6 +1,5 @@
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient();
 import NextCors from 'nextjs-cors';
+import { getCoffees } from '../../lib/redis';
 
 export default async (req, res) => {
     let data = "N/A";
@@ -9,8 +8,7 @@ export default async (req, res) => {
         methods: ['GET'],
         optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
     });
-    data = await prisma.coffee.count()
-
+    data = await getCoffees()
     res.statusCode = 200
-    res.json({data: data})
+    res.json({ data })
 }
