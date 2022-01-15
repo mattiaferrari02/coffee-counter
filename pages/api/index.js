@@ -10,7 +10,7 @@ export default async (req, res) => {
     const { coffees } = await getCoffees()
     
     res.statusCode = 200
-    res.send(`Hai bevuto ${coffees}`)
+    res.send(`Hai bevuto ${coffees} caffè`)
 }
 
 export const getData = async () =>{
