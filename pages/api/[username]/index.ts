@@ -5,7 +5,6 @@ export async function getUserCoffees(username: string): Promise<number> {
   const client = new PocketBase(process.env.POCKETBASE_URL)
   await client.users.authViaEmail(process.env.POCKETBASE_USER!, process.env.POCKETBASE_PASSWORD!)
   const records = await client.records.getFullList("users")
-
   const user = records.find(r => r.username === username)
 
   if (!user) {

@@ -10,7 +10,7 @@ export const signUp = async(username: string, password: string): Promise<void> =
   await client.users.authViaEmail(process.env.POCKETBASE_USER!, process.env.POCKETBASE_PASSWORD!)
 
   await client.records.create("users", {
-    username,
+    username: username.trim(),
     password: await bcrypt.hash(password, 5),
     coffees: 0
   })

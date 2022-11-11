@@ -9,7 +9,7 @@ export const login = async(username: string, password: string): Promise<string> 
   await client.users.authViaEmail(process.env.POCKETBASE_USER!, process.env.POCKETBASE_PASSWORD!)
 
   const records = await client.records.getFullList("users")
-  const user = records.find(r => r.username === username)
+  const user = records.find(r => r.username === username.trim())
   if (!user) {
     throw new Error("Not found")
   }
